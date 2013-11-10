@@ -1,0 +1,12 @@
+start on starting app
+stop on stopping app
+respawn limit 10 5
+console log
+setuid deploy
+setgid deploy
+chdir {{APP_DIR}}
+script
+        . {{APP_DIR}}/.env
+        echo at=run cmd={{CMD}} | logger -t app-{{NAME}}
+        exec {{CMD}} | logger -t app-{{NAME}}
+end script

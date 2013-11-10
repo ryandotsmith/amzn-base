@@ -1,0 +1,25 @@
+#!/bin/bash -ex
+
+# Create a deploy user without a password and with a home directory.
+sudo useradd -m deploy -s /bin/bash
+
+# Copy target-machine file system onto the new machine.
+sudo cp -R /tmp/target-machine/* /
+
+# Need to ensure that our sudoers file has
+# correct permissions.
+sudo chown -R 0 /etc/sudoers.d
+sudo chmod 0440 /etc/sudoers.d/deploy
+
+# Ensure that after moving files, the deploy owner
+# owns everthing.
+sudo chown -R deploy:deploy /home/deploy
+sudo chmod -R +x /home/deploy/bin
+
+# Install software that will be present on all AMIs
+# Checkout the frameworks directory for framework specific software
+# e.g. Ruby on Rails
+# We use the aws-cli to fetch data from S3 using IAM Roles.
+sudo apt-get update -y
+sudo apt-get install build-essential htop curl python-pip -y
+sudo pip install awscli

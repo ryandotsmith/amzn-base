@@ -1,0 +1,20 @@
+#!/bin/bash -ex
+
+export APP_DIR=$1
+
+stop app
+rm -f /etc/init/app-*
+rm -f /home/deploy/var/socket/nginx.socket
+
+cat "$APP_DIR/Procfile" | while read line
+do
+        name=$(echo "$line" | cut -d ':' -f1)
+        cmd=$(echo "$line" | cut -d ':' -f2-)
+        cat /home/deploy/templates/upstart.conf.template | \
+                sed "s|{{NAME}}|$name|" | \
+                sed "s|{{APP_DIR}}|$APP_DIR|" | \
+                sed "s|{{CMD}}|$cmd|" \
+                > /etc/init/app-"$name".conf
+done
+
+start app

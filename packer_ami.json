@@ -1,0 +1,37 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "framework": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "us-east-1",
+    "source_ami": "ami-ad184ac4",
+    "instance_type": "m1.large",
+    "ssh_username": "ubuntu",
+    "ami_name": "amzn-base-{{timestamp}}"
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["sleep 10"]
+    },
+    {
+      "type": "file",
+      "source": "target-machine",
+      "destination": "/tmp"
+    },
+    {
+      "type": "shell",
+      "script": "setup-base"
+    },
+    {
+      "type": "shell",
+      "script": "{{user `framework`}}"
+    }
+
+  ]
+}

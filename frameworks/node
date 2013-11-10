@@ -1,0 +1,2 @@
+set -ex
+sudo apt-get install nodejs npm nginx -y

@@ -1,0 +1,17 @@
+#!/bin/bash -ex
+
+export RELEASE_URL=$1
+
+if [ ! -d /home/deploy/app ]; then
+        mkdir /home/deploy/app
+fi
+
+# Download the code. Most likely from S3.
+aws s3 --region us-east-1 cp "$RELEASE_URL/source.tar.gz" "/tmp/source.tar.gz"
+cat "/tmp/source.tar.gz" | tar xvz --directory /home/deploy/app
+
+# Load our config from the release into the env.
+# Upstart will source this file prior to running commands.
+aws s3 --region us-east-1 cp "$RELEASE_URL/env" /home/deploy/app/.env
+
+sudo /home/deploy/bin/configure-upstart /home/deploy/app
