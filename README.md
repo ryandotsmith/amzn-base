@@ -1,10 +1,9 @@
-## Synopsis
 AMZN-base creates a base AMI for running web apps. It conforms to the AMZN archatecture API which means apps using AMI-base can be deployed and managed by AMZN-ship.
+AMZN-base is an implementation of the architecture defined in the [Application Platform on AWS](http://r.32k.io/app-platforms-on-aws) article. AMZN-base assumes the AMI is controlled with amzn-ship.
 
 ## Dependencies
 
 * Packer - http://www.packer.io/
-* IAM Role for access to S3.
 
 ## Using Packer to Create the AMI
 The AMI is responsible for installing Ruby and some helper programs for deployment. See the `bin` directory for the list of programs copied into the AMI.
