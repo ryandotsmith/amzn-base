@@ -1,5 +1,4 @@
-AMZN-base creates a base AMI for running web apps. It conforms to the AMZN archatecture API which means apps using AMI-base can be deployed and managed by AMZN-ship.
-AMZN-base is an implementation of the architecture defined in the [Application Platform on AWS](http://r.32k.io/app-platforms-on-aws) article. AMZN-base assumes the AMI is controlled with amzn-ship.
+AMZN-base is an implementation of the architecture defined in the [Application Platform on AWS](http://r.32k.io/app-platforms-on-aws) article. AMZN-base assumes the AMI is controlled with [amzn-ship](https://github.com/ryandotsmith/amzn-ship).
 
 ## Dependencies
 
