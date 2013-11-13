@@ -14,4 +14,5 @@ cat "/tmp/source.tar.gz" | tar xvz --directory /home/deploy/app
 # Upstart will source this file prior to running commands.
 aws s3 --region us-east-1 cp "$RELEASE_URL/env" /home/deploy/app/.env
 
+/home/deploy/bin/build-app /home/deploy/app
 sudo /home/deploy/bin/configure-upstart /home/deploy/app
