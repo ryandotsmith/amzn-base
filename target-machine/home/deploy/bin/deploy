@@ -7,12 +7,12 @@ if [ ! -d /home/deploy/app ]; then
 fi
 
 # Download the code. Most likely from S3.
-aws s3 --region us-east-1 cp "$RELEASE_URL/source.tar.gz" "/tmp/source.tar.gz"
+aws s3 cp "$RELEASE_URL/source.tar.gz" "/tmp/source.tar.gz"
 cat "/tmp/source.tar.gz" | tar xvz --directory /home/deploy/app
 
 # Load our config from the release into the env.
 # Upstart will source this file prior to running commands.
-aws s3 --region us-east-1 cp "$RELEASE_URL/env" /home/deploy/app/.env
+aws s3 cp "$RELEASE_URL/env" /home/deploy/app/.env
 
 /home/deploy/bin/build-app /home/deploy/app
 sudo /home/deploy/bin/configure-upstart /home/deploy/app
