@@ -1,16 +1,19 @@
 {
   "variables": {
-    "aws_access_key": "",
-    "aws_secret_key": "",
-    "framework": ""
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "region": "{{env `AWS_DEFAULT_REGION`}}",
+    "framework": null,
+    "source_ami": null,
+    "instance_type": "m1.large"
   },
   "builders": [{
     "type": "amazon-ebs",
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
-    "region": "us-east-1",
-    "source_ami": "ami-ad184ac4",
-    "instance_type": "m1.large",
+    "region": "{{user `region`}}",
+    "source_ami": "{{user `source_ami`}}",
+    "instance_type": "{{user `instance_type`}}",
     "ssh_username": "ubuntu",
     "ami_name": "amzn-base-{{timestamp}}"
   }],
