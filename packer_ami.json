@@ -5,7 +5,7 @@
     "region": "{{env `AWS_DEFAULT_REGION`}}",
     "framework": null,
     "source_ami": null,
-    "instance_type": "m1.large"
+    "instance_type": "m3.large"
   },
   "builders": [{
     "type": "amazon-ebs",
