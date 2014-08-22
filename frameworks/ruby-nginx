@@ -17,7 +17,7 @@ sudo apt-get install            \
 
 curl -O http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz
 
-ruby_checksum="b5b5c83565f8bd954ee522bd287d2ca1  ruby-2.1.2.tar.gz"
+ruby_checksum="a5b5c83565f8bd954ee522bd287d2ca1  ruby-2.1.2.tar.gz"
 download_checksum=$(md5sum ruby-2.1.2.tar.gz)
 if [ "$ruby_checksum" != "$download_checksum" ]
 then
