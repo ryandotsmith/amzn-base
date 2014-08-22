@@ -1,0 +1,32 @@
+set -ex
+
+sudo apt-get install            \
+	nodejs     		\
+	npm        		\
+	nginx      		\
+	zlib1g-dev 		\
+	libssl-dev 		\
+	libreadline-dev 	\
+	libyaml-dev 		\
+	libxml2-dev 		\
+	libxslt1-dev 		\
+	libcurl4-openssl-dev 	\
+	postgresql-9.3 		\
+	libpq-dev 		\
+	-y
+
+curl -O http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz
+
+ruby_checksum="b5b5c83565f8bd954ee522bd287d2ca1  ruby-2.1.2.tar.gz"
+download_checksum=$(md5sum ruby-2.1.2.tar.gz)
+if [ "$ruby_checksum" != "$download_checksum" ]
+then
+	echo 'Ruby failed checksum'
+	exit 1
+fi
+
+tar -xzvf ruby-2.1.2.tar.gz
+cd ruby-2.1.2/
+./configure
+make
+sudo make install
