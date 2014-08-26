@@ -1,1 +1,1 @@
-deploy ALL=(ALL) NOPASSWD: /sbin/initctl, /home/deploy/bin/configure-upstart, /etc/rsyslogd/papertrail.conf
+deploy ALL=(ALL) NOPASSWD: /sbin/initctl, /home/deploy/bin/configure-upstart
