@@ -30,3 +30,4 @@ cd ruby-2.1.2/
 ./configure
 make
 sudo make install
+sudo gem install bundler
