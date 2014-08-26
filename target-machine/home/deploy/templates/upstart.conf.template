@@ -7,6 +7,5 @@ setgid deploy
 chdir {{APP_DIR}}
 script
         . {{APP_DIR}}/.env
-	logger -t "$APP_NAME" at=run cmd={{CMD}}
         exec {{CMD}} | logger -t "$APP_NAME"
 end script
