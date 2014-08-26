@@ -1,5 +1,6 @@
 #!/bin/bash -ex
 
+
 export RELEASE_URL=$1
 
 if [ ! -d /home/deploy/app ]; then
@@ -14,5 +15,8 @@ cat "/tmp/source.tar.gz" | tar xvz --directory /home/deploy/app
 # Upstart will source this file prior to running commands.
 aws s3 cp "$RELEASE_URL/env" /home/deploy/app/.env
 
-/home/deploy/bin/build-app /home/deploy/app
-sudo /home/deploy/bin/configure-upstart /home/deploy/app
+cd /home/deploy/app
+. .env
+sudo /home/deploy/bin/configure-logging
+/home/deploy/bin/build-app
+sudo /home/deploy/bin/configure-upstart

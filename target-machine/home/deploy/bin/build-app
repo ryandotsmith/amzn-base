@@ -1,8 +1,4 @@
 #!/bin/bash -ex
 
-export APP_DIR=$1
-build=$(cat "$APP_DIR/Procfile" | grep build | sed 's|build:||')
-cd "$APP_DIR"
-. .env
+build=$(cat Procfile | grep build | sed 's|build:||')
 sh -c "$build"
-cd -

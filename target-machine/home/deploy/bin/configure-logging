@@ -1,0 +1,7 @@
+#!/bin/bash -ex
+
+if [ "$PAPERTRAIL_CONFIG" != "" ]; then
+	echo "$PAPERTRAIL_CONFIG" > /etc/rsyslog.d/papertrail.conf
+	/etc/init.d/rsyslog restart
+	echo 'Configured rsyslogd for papertrail forwarding.' | logger -t deploy
+fi

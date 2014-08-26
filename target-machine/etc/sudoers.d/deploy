@@ -1,1 +1,1 @@
-deploy ALL=(ALL) NOPASSWD: /sbin/initctl, /home/deploy/bin/configure-upstart
+deploy ALL=(ALL) NOPASSWD: /sbin/initctl, /home/deploy/bin/configure-upstart, /home/deploy/bin/configure-logging
