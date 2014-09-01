@@ -1,7 +1,8 @@
 #!/bin/bash -ex
 
-if [ "$PAPERTRAIL_CONFIG" != "" ]; then
-	echo "$PAPERTRAIL_CONFIG" > /etc/rsyslog.d/papertrail.conf
-	/etc/init.d/rsyslog restart
-	echo 'Configured rsyslogd for papertrail forwarding.' | logger -t deploy
+export LOGGING_CONFIG=$1
+if [ "$LOGGING_CONFIG" != "" ]; then
+	echo "$LOGGING_CONFIG" > /etc/rsyslog.d/amzn.conf
+	service rsyslog restart
+	echo 'Configured rsyslogd.' | logger -t deploy
 fi

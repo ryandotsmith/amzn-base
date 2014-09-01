@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-export APP_DIR=`pwd`
+export APP_DIR=$1
 
 stop app
 rm -f /etc/init/app-*

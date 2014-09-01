@@ -1,22 +1,22 @@
 #!/bin/bash -ex
 
-
 export RELEASE_URL=$1
+export APP_DIR=/home/deploy/app
 
-if [ ! -d /home/deploy/app ]; then
-        mkdir /home/deploy/app
+if [ ! -d $APP_DIR ]; then
+        mkdir $APP_DIR
 fi
 
 # Download the code. Most likely from S3.
 aws s3 cp "$RELEASE_URL/source.tar.gz" "/tmp/source.tar.gz"
-cat "/tmp/source.tar.gz" | tar xvz --directory /home/deploy/app
+cat "/tmp/source.tar.gz" | tar xvz --directory "$APP_DIR"
 
 # Load our config from the release into the env.
 # Upstart will source this file prior to running commands.
-aws s3 cp "$RELEASE_URL/env" /home/deploy/app/.env
+aws s3 cp "$RELEASE_URL/env" "$APP_DIR/.env"
 
-cd /home/deploy/app
-. .env
-sudo /home/deploy/bin/configure-logging
-/home/deploy/bin/build-app
-sudo /home/deploy/bin/configure-upstart
+source "$APP_DIR/.env"
+
+sudo /home/deploy/bin/configure-logging "$LOGGING_CONFIG"
+/home/deploy/bin/build-app "$APP_DIR"
+sudo /home/deploy/bin/configure-upstart "$APP_DIR"

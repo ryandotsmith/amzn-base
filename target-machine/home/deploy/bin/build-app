@@ -1,4 +1,7 @@
 #!/bin/bash -ex
 
+export APP_DIR=$1
+cd "$APP_DIR"
 build=$(cat Procfile | grep build | sed 's|build:||')
 sh -c "$build"
+cd -
