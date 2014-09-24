@@ -21,5 +21,6 @@ sudo chmod -R +x /home/deploy/bin
 # e.g. Ruby on Rails
 # We use the aws-cli to fetch data from S3 using IAM Roles.
 sudo apt-get update -y
+sudo unattended-upgrade
 sudo apt-get install build-essential htop curl python-pip -y
 sudo pip install awscli
