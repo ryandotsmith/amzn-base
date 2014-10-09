@@ -3,6 +3,6 @@
 export LOGGING_CONFIG=$1
 if [ "$LOGGING_CONFIG" != "" ]; then
 	echo "$LOGGING_CONFIG" > /etc/rsyslog.d/amzn.conf
-	service rsyslog restart
+	restart rsyslog
 	echo 'Configured rsyslogd.' | logger -t deploy
 fi
