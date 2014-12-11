@@ -1,11 +1,14 @@
 start on starting app
 stop on stopping app
-respawn limit 10 5
+respawn
+respawn limit unlimited
+limit nofile 16384 16384
 console log
 setuid deploy
 setgid deploy
 chdir {{APP_DIR}}
 script
         . {{APP_DIR}}/.env
-        exec {{CMD}} | logger -t "$APP_NAME"
+        logger -t "$APP_NAME" at=run cmd={{CMD}}
+        exec {{CMD}} 2>&1 | logger -t "$APP_NAME"
 end script
