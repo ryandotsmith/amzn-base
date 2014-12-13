@@ -5,7 +5,8 @@
     "region": "{{env `AWS_DEFAULT_REGION`}}",
     "framework": null,
     "source_ami": null,
-    "instance_type": "m3.large"
+    "instance_type": "m3.large",
+    "name": "amzn-base"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -15,7 +16,7 @@
     "source_ami": "{{user `source_ami`}}",
     "instance_type": "{{user `instance_type`}}",
     "ssh_username": "ubuntu",
-    "ami_name": "amzn-base-{{timestamp}}"
+    "ami_name": "{{user `name`}}-{{timestamp}}"
   }],
   "provisioners": [
     {

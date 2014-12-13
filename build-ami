@@ -1,6 +1,10 @@
 #!/bin/bash -ex
 
+PATH=$1
+NAME=${PATH##*/} # remove everything before and including last slash
+
 packer build \
 	-var "framework=$1" \
 	-var "source_ami=$2" \
+	-var "name=$NAME" \
 	packer_ami.json
