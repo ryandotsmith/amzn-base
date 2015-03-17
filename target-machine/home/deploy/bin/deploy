@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash -e
+
+[ -n "$AMZN_DEBUG" ] && set -x
 
 export RELEASE_URL=$1
 export APP_DIR=/home/deploy/app

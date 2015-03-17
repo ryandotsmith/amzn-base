@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash -e
+
+[ -n "$AMZN_DEBUG" ] && set -x
 
 # Create a deploy user without a password and with a home directory.
 sudo useradd -m deploy -s /bin/bash

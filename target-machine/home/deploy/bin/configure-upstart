@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash -e
+
+[ -n "$AMZN_DEBUG" ] && set -x
 
 export APP_DIR=$1
 
