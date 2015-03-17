@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash -e
+
+[ -n "$AMZN_DEBUG" ] && set -x
 
 export LOGGING_CONFIG=$1
 if [ "$LOGGING_CONFIG" != "" ]; then

@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash -e
+
+[ -n "$AMZN_DEBUG" ] && set -x
 
 FRAMEPATH=$1
 NAME=${FRAMEPATH##*/} # remove everything before and including last slash
