@@ -1,0 +1,10 @@
+rotate 7
+size 50M
+missingok
+notifempty
+compress
+postrotate
+        reload rsyslog >/dev/null 2>&1 || true
+endscript
+
+/var/log/syslog {}
