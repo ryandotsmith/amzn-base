@@ -1,0 +1,8 @@
+# From http://help.papertrailapp.com/kb/configuration/encrypting-remote-syslog-with-tls-ssl/#rsyslog
+# These lines must be set before the lines in 91.3-logging.conf, which is created in 
+# home/deploy/bin/configure-logging. 
+$DefaultNetstreamDriverCAFile /etc/papertrail-bundle.pem # trust these CAs
+$ActionSendStreamDriver gtls # use gtls netstream driver
+$ActionSendStreamDriverMode 1 # require TLS
+$ActionSendStreamDriverAuthMode x509/name # authenticate by hostname
+$ActionSendStreamDriverPermittedPeer *.papertrailapp.com
