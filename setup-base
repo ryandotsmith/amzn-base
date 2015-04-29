@@ -24,5 +24,5 @@ sudo chmod -R +x /home/deploy/bin
 # We use the aws-cli to fetch data from S3 using IAM Roles.
 sudo apt-get update -y
 sudo unattended-upgrade
-sudo apt-get install build-essential htop curl python-pip ntp -y
+sudo apt-get install build-essential htop curl python-pip ntp rsyslog-gnutls -y
 sudo pip install awscli
