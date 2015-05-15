@@ -12,6 +12,11 @@ cat "$APP_DIR/Procfile" | while read line
 do
         name=$(echo "$line" | cut -d ':' -f1)
         cmd=$(echo "$line" | cut -d ':' -f2-)
+
+        if [ "$name" = "build" ]; then
+          continue
+        fi
+
         cat /home/deploy/templates/upstart.conf.template | \
                 sed "s|{{NAME}}|$name|" | \
                 sed "s|{{APP_DIR}}|$APP_DIR|" | \
